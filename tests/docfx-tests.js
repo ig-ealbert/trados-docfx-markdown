@@ -48,8 +48,7 @@ QUnit.test( "Ordered list items with two digits should be parsed", function (ass
 
 QUnit.test( "Code blocks should not be parsed because the whole code block should match the regular expression", function (assert ) {
   var codeBlock = "```\nthis.code = code;\n```";
-  //var regEx = /```([\s\S](?!```))*\s*```/
-  var regEx = /```[^`]+```/;
+  var regEx = /```([\s\S](?!```))*[^`]+\s*```/
   assert.ok( regEx.test(codeBlock), "The entire code block should match the given regular expression." );
 });
 
