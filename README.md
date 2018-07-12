@@ -45,7 +45,7 @@ The patterns written below are adapted to appear correctly in rendered markdown.
 | `(?<=^`&#x7c;`\s`&#x7c;`\()\[(?!\()` | `\]\([a-zA-Z0-9:\/\-\.#_]+\)` | Link tags (ex. `[Link text](link.url)`). |
 | `\*+` |  | Bold (`*`) or italic (`**`) tags. |
 | `_` |  | Italic (`_`) tags. |
-| `!\[\]\([^)]+\)` |  | Image (`![](image.png)`) tags. |
+| `!\[[^\]]*\]\([^)]+\)` |  | Image (`![tooltip text](image.png)`) tags. |
 | `(?<!\\)\`&#x7c; |  | Table delimiters. |
 | `:?\-+\-+:?\s*(?=\`&#x7c;`)` |  | Syntax to separate table headers from table content. |
 | `` ` `` |  | Backticks that identify code words. |
@@ -68,3 +68,4 @@ If a source file has the wrong encoding or is otherwise corrupted, it will not p
 * Lines starting with `_` will not parse.  Adding this to the document structure rules conflicts with the inline tag rules and the file will not open.
 * Multi-line HTML tags may appear in the parsed content.  **Workaround**: Lock or skip these TUs in the .sdlxliff file, or remove the line breaks in the source file.
 * HTML will not be parsed.  **Workaround**: Copy or rename the file with a *.html extension and translate it as HTML.
+* Tooltip text for images are not translatable.  Trying to create a tag pair for this resulted in an error in Trados.

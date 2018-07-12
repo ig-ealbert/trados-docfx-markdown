@@ -161,17 +161,17 @@ QUnit.test( "Italic text with an _ should be parsed", function (assert ) {
   assert.ok( regEx.test(boldText), "The italic text with an _ should be parsed in the given regular expression." );
 });
 
-QUnit.test( "Images without placeholder text should be parsed", function (assert ) {
+QUnit.test( "Images without tooltip text should be parsed", function (assert ) {
   var image = "![](imageUrl.png)";
-  var regEx = /!\[\]\([^)]+\)/;
+  var regEx = /!\[[^\]]*\]\([^)]+\)/;
   assert.ok( regEx.test(image), "The image should be parsed in the given regular expression." );
 });
 
-/*QUnit.test( "Images with placeholder text should be parsed", function (assert ) {
-  var image = "![Placeholder text](imageUrl.png)";
-  var regEx = /!\[\]\([^)]+\)/;
+QUnit.test( "Images with tooltip text should be parsed", function (assert ) {
+  var image = "![Tooltip text](imageUrl.png)";
+  var regEx = /!\[[^\]]*\]\([^)]+\)/;
   assert.ok( regEx.test(image), "The image should be parsed in the given regular expression." );
-});*/
+});
 
 QUnit.test( "Backticks should be parsed", function (assert ) {
   var codeText = "`Code words`";
