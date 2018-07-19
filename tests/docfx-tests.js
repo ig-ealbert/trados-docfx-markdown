@@ -102,44 +102,50 @@ QUnit.test( "Regular paragraph text should be parsed", function (assert ) {
 
 QUnit.test( "Links without any special characters should be parsed", function (assert ) {
   var link = "[Please Google it](http://www.google.com)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link without any special characters should be parsed in the given regular expression." );
 });
 
 QUnit.test( "Links with a # sign should be parsed", function (assert ) {
   var link = "[Please Google it](http://www.google.com#anchor)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link with a # sign should be parsed in the given regular expression." );
 });
 
 QUnit.test( "Links with a # sign and an _ should be parsed", function (assert ) {
   var link = "[Please Google it](http://www.google.com#internal_anchor)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link with a # sign and an _ should be parsed in the given regular expression." );
 });
 
 QUnit.test( "Links with numbers should be parsed", function (assert ) {
   var link = "[Please Google it](http://www.google999.com)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link with numbers should be parsed in the given regular expression." );
 });
 
 QUnit.test( "Links with a / should be parsed", function (assert ) {
   var link = "[Please Google it](http://www.google.com/answer)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link with a / should be parsed in the given regular expression." );
 });
 
 QUnit.test( "Links with a : should be parsed", function (assert ) {
   var link = "[Local URL](http://localhost:8080)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link with a : should be parsed in the given regular expression." );
 });
 
 QUnit.test( "Links with a - should be parsed", function (assert ) {
   var link = "[Please Google it](http://www.google-it.com)";
-  var regEx = /(?<=^|\s|\()\[(?!\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
   assert.ok( regEx.test(link), "The link with a - should be parsed in the given regular expression." );
+});
+
+QUnit.test( "Angular bindings should not be parsed as links", function (assert ) {
+  var link = '[height]="null"';
+  var regEx = /\[(?=[^\]]+\]\()[^\]]+\]\([a-zA-Z0-9:\/\-\.#_]+\)/;
+  assert.notOk( regEx.test(link), "The binding syntax in Angular should not be parsed in the given regular expression." );
 });
 
 QUnit.test( "Bold text should be parsed", function (assert ) {

@@ -42,7 +42,7 @@ The patterns written below are adapted to appear correctly in rendered markdown.
 
 | Opening Pattern  | Closing Pattern | Explanation |
 | ----- | ----- | ----- |
-| `(?<=^`&#x7c;`\s`&#x7c;`\()\[(?!\()` | `\]\([a-zA-Z0-9:\/\-\.#_]+\)` | Link tags (ex. `[Link text](link.url)`). |
+| `\[(?=[^\]]+\]\()` | `\]\([a-zA-Z0-9:\/\-\.#_]+\)` | Link tags (ex. `[Link text](link.url)`). |
 | `\*+` |  | Bold (`*`) or italic (`**`) tags. |
 | `_` |  | Italic (`_`) tags. |
 | `!\[[^\]]*\]\([^)]+\)` |  | Image (`![tooltip text](image.png)`) tags. |
